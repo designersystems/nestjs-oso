@@ -1,11 +1,11 @@
 export class OsoMetadataStorageHost {
-  private classes = new Array<Function>();
+  private classes = new Array<[Function, Record<string, any> | null]>();
 
-  addClass(metadata: Function): void {
-    this.classes.push(metadata);
+  addClass(metadata: Function, params?: Record<string, any>): void {
+    this.classes.push([metadata, params]);
   }
 
-  getClasses(): Array<Function> {
+  getClasses(): Array<[Function, Record<string, any> | null]> {
     return this.classes;
   }
 }

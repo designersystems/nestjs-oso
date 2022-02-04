@@ -16,7 +16,12 @@ export class OsoService extends Oso implements OnModuleInit {
     const providers = OsoMetadataStorage.getClasses();
 
     providers.forEach(m => {
-      this.registerClass(m as any);
+      const [cls, params] = m;
+      if (params) {
+        this.registerClass(cls as any, params);
+      } else {
+        this.registerClass(cls as any);
+      }
     });
 
     if (this.options.loadFile) {
